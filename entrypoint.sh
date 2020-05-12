@@ -16,10 +16,10 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$GITHUB_USERNAME/$GITHUB_REPO.gi
 
 ls -la "$CLONE_DIR"
 
-if [[ $RESET_OR_MODIFY =~ "reset"]]; then
+# if [[ $RESET_OR_MODIFY =~ "reset"]]; then
   # Copy files into the git and deletes all git
   find "$CLONE_DIR" | grep -v "^$CLONE_DIR/\.git" | grep -v "^$CLONE_DIR$" | xargs rm -rf # delete all files (to handle deletions)
-fi
+# fi
 
 ls -la "$CLONE_DIR"
 
