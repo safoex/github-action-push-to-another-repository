@@ -5,6 +5,7 @@ FOLDER="$1"
 GITHUB_USERNAME="$2"
 GITHUB_REPO="$3"
 GIT_USER_EMAIL="$4"
+RESET_OR_MODIFY="$5"
 
 CLONE_DIR=$(mktemp -d)
 
@@ -15,8 +16,10 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$GITHUB_USERNAME/$GITHUB_REPO.gi
 
 ls -la "$CLONE_DIR"
 
-# Copy files into the git and deletes all git
-find "$CLONE_DIR" | grep -v "^$CLONE_DIR/\.git" | grep -v "^$CLONE_DIR$" | xargs rm -rf # delete all files (to handle deletions)
+if [[ $RESET_OR_MODIFY =~ "reset"]]; then
+  # Copy files into the git and deletes all git
+  find "$CLONE_DIR" | grep -v "^$CLONE_DIR/\.git" | grep -v "^$CLONE_DIR$" | xargs rm -rf # delete all files (to handle deletions)
+fi
 
 ls -la "$CLONE_DIR"
 
